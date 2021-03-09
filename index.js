@@ -16,18 +16,17 @@ function load() {
 
 
 function sendData(data) {
-    console.log("HELLO THERE!");
-    console.log(data);
-
-    const XHR = new XMLHttpRequest();
-
-    XHR.open('POST', 'http://localhost:3000/submit');
-    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    XHR.send(JSON.stringify(data));
-    XHR.addEventListener('error', function (event) {
-        console.error('Oops! Something went wrong.', event);
-    });
-    XHR.addEventListener('load', function (_) {
-        console.log('Yeah! Data sent and response loaded.');
-    });
+    fetch(
+        'http://localhost:3000/submit',
+        {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        },
+    )
+        .then(response => response.json())
+        .then(() => console.log('Yeah! Data sent and response loaded.'))
+        .catch((e) => console.error(e));
 }
