@@ -15,5 +15,8 @@ app.listen(PORT, () => {
 app.post('/submit', function (req, res) {
     console.log("Hello from submit");
     console.log(req.body);
-   // console.log(req);
+
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.json({"failed": 1, "responseDescription": "Please select captcha"});
+    }
 });

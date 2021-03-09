@@ -26,7 +26,23 @@ function sendData(data) {
             body: JSON.stringify(data)
         },
     )
-        .then(response => response.json())
-        .then(() => console.log('Yeah! Data sent and response loaded.'))
+        .then((response) => response.json())
+        .then((data) => {
+            console.warn("Problem occurred:", data.responseDescription);
+
+            const element = document.getElementById('captchaErrorContainer');
+
+            if (data.failed) {
+                const tag = document.createElement("p");
+                const text = document.createTextNode(data.responseDescription);
+
+                tag.appendChild(text);
+                tag.className = 'required';
+                element.appendChild(tag);
+            } else {
+                element.innerHTML = '';
+                console.log('Yeah! Data sent and response loaded.')
+            }
+        })
         .catch((e) => console.error(e));
 }
