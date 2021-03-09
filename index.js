@@ -14,7 +14,6 @@ function load() {
     });
 }
 
-
 function sendData(data) {
     fetch(
         'http://localhost:3000/submit',
@@ -24,25 +23,27 @@ function sendData(data) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        },
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            console.warn("Problem occurred:", data.responseDescription);
-
-            const element = document.getElementById('captchaErrorContainer');
-
-            if (data.failed) {
-                const tag = document.createElement("p");
-                const text = document.createTextNode(data.responseDescription);
-
-                tag.appendChild(text);
-                tag.className = 'required';
-                element.appendChild(tag);
-            } else {
-                element.innerHTML = '';
-                console.log('Yeah! Data sent and response loaded.')
-            }
         })
+        .then((response) => response.json())
+        .then((data) => createHint(data.failed, data.responseDescription))
         .catch((e) => console.error(e));
+}
+
+function createHint(failed, responseDescription) {
+    const element = document.getElementById('captchaHintContainer');
+    element.innerHTML = '';
+
+    const tag = document.createElement("p");
+    const text = document.createTextNode(responseDescription);
+
+    tag.appendChild(text);
+    element.appendChild(tag);
+
+    if (failed) {
+        tag.className = 'required';
+        console.warn("Problem occurred:", responseDescription);
+    } else {
+        tag.className = 'success';
+        console.log('Yeah! Data sent and response loaded.', responseDescription)
+    }
 }
