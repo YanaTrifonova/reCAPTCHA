@@ -1,0 +1,16 @@
+{
+  "name": "recaptcha",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  },
+  "description": "Add captcha to submit form",
+  "main": "index.js",
+  "author": "Yana Trifonova",
+  "license": "ISC"
+}
