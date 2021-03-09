@@ -14,7 +14,7 @@
     "request": "^2.88.2"
   },
   "description": "Add captcha to submit form",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Yana Trifonova",
   "license": "ISC"
 }
