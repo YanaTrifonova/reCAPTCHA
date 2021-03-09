@@ -1,15 +1,21 @@
 # ReCaptcha project
 
-![docs](https://developers.google.com/recaptcha/docs/display#auto_render)
+[Documentation from developers.google.com](https://developers.google.com/recaptcha/docs/display#auto_render)
 
 ## Start the project
 
-`$ npm init`
+```
+$ npm init
+```
 
 For development mode run Backend with
-`$ npm dev`
+```
+$ npm dev
+```
 
 Else
-`$ npm start`
+```
+$ npm start
+```
 
 Open index.html to play
